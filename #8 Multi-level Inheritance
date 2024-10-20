@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+class Person {
+    char name[30];
+public:
+    void setName() {
+        cout << "Enter Name: ";
+        cin.ignore(); // Clear any newline characters from the input buffer
+        cin.getline(name, 30);
+    }
+
+    void display() {
+        cout << "Name: " << name << endl;
+    }
+};
+
+class Sport : public Person { // Sport inherits from Person
+    int age = 69; // Default age
+public:
+    void setAge(int a) {
+        age = a; // Allow setting a new age
+    }
+
+    void display() {
+        Person::display(); // Call Person's display method
+        cout << "Age: " << age << endl;
+    }
+};
+
+class Student : public Sport { // Student inherits from Sport
+public:
+    void display() {
+        Sport::display(); // Call Sport's display method
+    }
+};
+
+int main() {
+    Student st;
+    st.setName();
+    st.setAge(20); // Example of setting an age
+    st.display();
+    return 0;
+}
